@@ -5,6 +5,11 @@ const supplierList: Supplier[] = [];
 
 let nextId = 1;
 
+export const resetSuppliers = () => {
+    supplierList.length = 0;
+    nextId = 1;
+};
+
 export const createSupplier = (name: string, email: string): Supplier => {
     const newSupplier: Supplier = {
         name,
