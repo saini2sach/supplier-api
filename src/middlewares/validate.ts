@@ -10,8 +10,12 @@ export const validateSupplier = (schema: z.ZodType) => {
 
         if (!result.success) {
             return res.status(400).json({
-                error: "Validation error",
-                message: result.error
+                success: false,
+                message: "Validation failed",
+                errors: result.error.issues.map(issue => ({
+                    field: issue.path.join("."),
+                    message: issue.message
+                }))
             })
         }
 
