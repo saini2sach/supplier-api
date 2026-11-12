@@ -1,21 +1,7 @@
-import express from 'express';
-import supplierRouter from './routes/supplier.routes.js';
-import { errorHandler } from './middlewares/error-handler.js';
+import app from './app.js';
 
-const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use('/api/suppliers', supplierRouter);
-
-app.use(errorHandler);
-
-// 404 handler
-app.use((_req, res) => {
-    res.status(404).json({
-        error: "Route not found",
-    });
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
-
-app.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
-})
