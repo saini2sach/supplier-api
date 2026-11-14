@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import request from "supertest";
-import app from "../app.js";
-import { resetSuppliers } from "../services/supplier.service.js";
+import app from "../src/app.js";
+import { resetSuppliers } from "../src/services/supplier.service.js";
 
 describe("Supplier API", () => {
 
