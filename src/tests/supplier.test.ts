@@ -1,13 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import request from "supertest";
-import app from "../src/app.js";
-import { resetSuppliers } from "../src/services/supplier.service.js";
+import app from "../app.js";
 
 describe("Supplier API", () => {
-
-    beforeEach(() => {
-        resetSuppliers();
-    });
 
     it("should create a supplier successfully", async () => {
 
