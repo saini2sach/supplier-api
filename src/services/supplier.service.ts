@@ -1,5 +1,52 @@
 import { AppError } from "../errors/app-error.js";
+import { createSupplierDb, deleteSupplierDb, getAllSuppliersDb, getSupplierByIdDb, updateSupplierDb } from "../repositories/supplier.repository.js";
 import type { Supplier, UpdateSupplierInput } from "../types/supplier.js";
+
+export const createSupplier = (name: string, email: string): Promise<Supplier | null> => {
+    return createSupplierDb(name, email);
+}
+
+export const getAllSuppliers = () => {
+    return getAllSuppliersDb();
+}
+
+export const getSupplierById = async (supplierId: number) => {
+
+    const result = await getSupplierByIdDb(supplierId);
+
+    if (!result) {
+        throw new AppError(404, 'Supplier not found')
+    }
+    return result;
+}
+
+
+export const updateSupplier = async (supplierId: number, reqBody: UpdateSupplierInput): Promise<Supplier> => {
+
+    const result = await updateSupplierDb(supplierId, reqBody);
+
+    if (!result) {
+        throw new AppError(404, 'Supplier not found');
+    }
+
+    return result;
+}
+
+
+export const deleteSupplier = async (supplierId: number): Promise<Supplier> => {
+
+    const result = await deleteSupplierDb(supplierId);
+
+    if (!result) {
+        throw new AppError(404, 'Supplier not found');
+    }
+
+    return result;
+}
+
+
+
+/*
 
 const supplierList: Supplier[] = [];
 
@@ -67,3 +114,4 @@ export const deleteSupplier = (supplierId: number): Supplier | null => {
 
     return deletedItemList[0] || null;
 }
+*/
